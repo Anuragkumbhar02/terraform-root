@@ -37,7 +37,7 @@ variable "ec2_instances" {
   description = "Map of EC2 instances to create"
   type = map(object({
     ami_id        = string
-    instance_type = "t3.micro"
+    instance_type = string
     subnet_key    = string
   }))
 }
