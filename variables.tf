@@ -1,7 +1,7 @@
 variable "aws_region" {
   description = "AWS region"
   type        = string
-  default     = "us-east-1"
+  default     = "ap-south-1"
 }
 
 variable "environment" {
@@ -37,7 +37,7 @@ variable "ec2_instances" {
   description = "Map of EC2 instances to create"
   type = map(object({
     ami_id        = string
-    instance_type = string
+    instance_type = "t3.micro"
     subnet_key    = string
   }))
 }
