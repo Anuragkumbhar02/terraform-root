@@ -17,7 +17,7 @@ locals {
 
 # ── VPC ──────────────────────────────────────────────────────────────
 module "vpc" {
-  source = "git::https://github.com/ygminds73/terraform-module-vpc.git"
+  source = "git::https://github.com/Anuragkumbhar02/terraform-module-vpc.git"
 
   cidr_block = var.vpc_cidr
   vpc_name   = "${local.name_prefix}-vpc"
@@ -25,8 +25,8 @@ module "vpc" {
 }
 
 # ── Subnets (4 subnets via for_each) ─────────────────────────────────
-module "subnets" {
-  source = "git::https://github.com/ygminds73/terraform-module-subnet.git"
+/# module "subnets" {
+  source = "git::https://github.com/Anuragkumbhar02/terraform-module-subnet.git"
 
   for_each          = var.subnets
   subnet_name       = "${local.name_prefix}-${each.key}"
@@ -35,7 +35,7 @@ module "subnets" {
   vpc_id            = module.vpc.vpc_id
   is_public         = each.value.is_public
   tags              = merge(local.common_tags, { SubnetType = each.value.is_public ? "public" : "private" })
-}
+} #/
 
 # ── EC2 Instances (2 instances via for_each) ─────────────────────────
 module "ec2_instances" {
